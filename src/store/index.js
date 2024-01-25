@@ -1,6 +1,9 @@
 import { createStore } from 'vuex'
 import axios from 'axios';
 
+// endereço do banco de dados
+// const dbUrl = 'https://api.jsonbin.io/v3/b/65b133ed266cfc3fde7f642f'
+
 export default createStore({
   state: {
     todos: []
@@ -31,7 +34,7 @@ export default createStore({
     getTodos({ commit }) {
       return new Promise((resolve) => {
         setTimeout(() => {
-          return axios.get('http://localhost:3000/todos')
+          return axios.get('http://localhost:3000/todos') // para usar o json da nuvem: `{ dbUrl }` e substituir linha 39 por: commit('storeTodos', response.data.record.todos)
               .then((response) => {
                 commit('storeTodos', response.data)
                 resolve()
@@ -58,6 +61,7 @@ export default createStore({
       })
     }
   },
+
   getters: {
   },
   modules: {
